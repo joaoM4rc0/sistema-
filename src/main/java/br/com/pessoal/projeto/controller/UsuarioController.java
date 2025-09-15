@@ -15,16 +15,19 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
-
+    @GetMapping
     public List<UsuarioDto> ListarTodos() {
         return usuarioService.ListarTodos();
     }
+    @PostMapping
     public UsuarioDto AdicionarUsuario(@RequestBody UsuarioDto usuario) {
         return usuarioService.InserirUsuario(usuario);
     }
+    @PutMapping
     public UsuarioDto AtualizarUsuario(@RequestBody UsuarioDto usuario) {
         return usuarioService.AtualizarUsuario(usuario);
     }
+    @DeleteMapping
     public ResponseEntity<Void> deletar(@PathVariable("id") long id) {
         usuarioService.DeletarUsuario(id);
         return ResponseEntity.ok().build();

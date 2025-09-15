@@ -12,7 +12,7 @@ import org.springframework.beans.BeanUtils;
 import java.util.Objects;
 
 @Entity
-@Table(name = "JM_perfil")
+@Table(name = "JM_PERFIL")
 @Getter
 @Setter
 @NoArgsConstructor

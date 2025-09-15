@@ -1,9 +1,11 @@
 package br.com.pessoal.projeto.entity;
 
+import br.com.pessoal.projeto.dto.PerfilUsuarioDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.BeanUtils;
 
 @Entity
 @Table(name = "JM_PERFIL_USUARIO")
@@ -22,4 +24,14 @@ public class PerfilUsuarioEntity {
     @ManyToOne
     @JoinColumn(name = "ID_PERFIL")
     private PerfilEntity perfil;
+
+    public PerfilUsuarioEntity(PerfilUsuarioDto perfilUsuario) {
+        BeanUtils.copyProperties(perfilUsuario, this);
+        if (perfilUsuario.getUsuario() != null) {
+            this.usuario = new Usuario(perfilUsuario.getUsuario());
+        }
+        if (perfilUsuario.getPerfil() != null) {
+            this.perfil = new PerfilEntity(perfilUsuario.getPerfil());
+        }
+    }
 }
