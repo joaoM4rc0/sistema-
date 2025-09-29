@@ -2,6 +2,7 @@ package br.com.pessoal.projeto.entity;
 
 import br.com.pessoal.projeto.dto.PerfilUsuarioDto;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class PerfilUsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +21,7 @@ public class PerfilUsuarioEntity {
 
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO")
-    private Usuario usuario;
+    private UsuarioEntity usuario;
 
     @ManyToOne
     @JoinColumn(name = "ID_PERFIL")
@@ -28,10 +30,11 @@ public class PerfilUsuarioEntity {
     public PerfilUsuarioEntity(PerfilUsuarioDto perfilUsuario) {
         BeanUtils.copyProperties(perfilUsuario, this);
         if (perfilUsuario.getUsuario() != null) {
-            this.usuario = new Usuario(perfilUsuario.getUsuario());
+            this.usuario = new UsuarioEntity(perfilUsuario.getUsuario());
         }
         if (perfilUsuario.getPerfil() != null) {
             this.perfil = new PerfilEntity(perfilUsuario.getPerfil());
         }
     }
+
 }

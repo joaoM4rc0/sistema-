@@ -1,8 +1,10 @@
 package br.com.pessoal.projeto.repository;
 
-import br.com.pessoal.projeto.entity.Usuario;
+import br.com.pessoal.projeto.entity.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+import java.util.Optional;
 
+public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
+    Optional<UsuarioEntity> findByLogin(String username);
 }

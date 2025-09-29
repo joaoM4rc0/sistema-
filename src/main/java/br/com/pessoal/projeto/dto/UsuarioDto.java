@@ -1,6 +1,7 @@
 package br.com.pessoal.projeto.dto;
 
-import br.com.pessoal.projeto.entity.Usuario;
+import br.com.pessoal.projeto.Enum.TipoSituacaoUsu;
+import br.com.pessoal.projeto.entity.UsuarioEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
@@ -13,8 +14,8 @@ public class UsuarioDto {
 	private String login;
 	private String email;
 	private String senha;
-
-	public UsuarioDto(Usuario usu) {
+	private TipoSituacaoUsu situacao;
+	public UsuarioDto(UsuarioEntity usu) {
 		BeanUtils.copyProperties(usu, this);
 	}
 

@@ -1,7 +1,7 @@
 package br.com.pessoal.projeto.service;
 
 import br.com.pessoal.projeto.dto.UsuarioDto;
-import br.com.pessoal.projeto.entity.Usuario;
+import br.com.pessoal.projeto.entity.UsuarioEntity;
 import br.com.pessoal.projeto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public List<UsuarioDto> ListarTodos() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
+        List<UsuarioEntity> usuarios = usuarioRepository.findAll();
         return usuarios.stream().map(UsuarioDto::new).toList();
     }
     public UsuarioDto InserirUsuario(UsuarioDto usuarioDto) {
-        Usuario usuario = usuarioRepository.save(new Usuario(usuarioDto));
+        UsuarioEntity usuario = usuarioRepository.save(new UsuarioEntity(usuarioDto));
         return new UsuarioDto(usuario);
     }
     public UsuarioDto AtualizarUsuario(UsuarioDto usuarioDto) {
-        return new UsuarioDto(usuarioRepository.save(new Usuario(usuarioDto)));
+        return new UsuarioDto(usuarioRepository.save(new UsuarioEntity(usuarioDto)));
     }
     public void DeletarUsuario(long id){
         boolean exist = usuarioRepository.existsById(id);

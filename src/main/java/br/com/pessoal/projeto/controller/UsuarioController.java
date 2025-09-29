@@ -1,7 +1,7 @@
 package br.com.pessoal.projeto.controller;
 
 import br.com.pessoal.projeto.dto.UsuarioDto;
-import br.com.pessoal.projeto.entity.Usuario;
+import br.com.pessoal.projeto.entity.UsuarioEntity;
 import br.com.pessoal.projeto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +25,13 @@ public class UsuarioController {
     }
     @PostMapping
     public void AdicionarUsuario(@RequestBody UsuarioDto usuario) {
-        Usuario usuarioentity = new Usuario(usuario);
+        UsuarioEntity usuarioentity = new UsuarioEntity(usuario);
         usuarioentity.setSenha(passwordEncoder.encode(usuario.getSenha()));
         usuarioService.InserirUsuario(new UsuarioDto(usuarioentity));
     }
     @PutMapping
     public UsuarioDto AtualizarUsuario(@RequestBody UsuarioDto usuario) {
-        Usuario usuarioEntity = new Usuario(usuario);
+        UsuarioEntity usuarioEntity = new UsuarioEntity(usuario);
         usuarioEntity.setSenha(passwordEncoder.encode(usuario.getSenha()));
         return usuarioService.AtualizarUsuario(new UsuarioDto(usuarioEntity));
     }
