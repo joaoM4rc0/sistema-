@@ -1,8 +1,10 @@
 package br.com.pessoal.projeto.controller;
 
 import br.com.pessoal.projeto.dto.AuthenticationDto;
+import br.com.pessoal.projeto.dto.UsuarioDto;
 import br.com.pessoal.projeto.repository.UsuarioRepository;
 import br.com.pessoal.projeto.service.AuthService;
+import br.com.pessoal.projeto.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,8 +18,14 @@ import java.util.List;
 public class AuthController {
     @Autowired
     private AuthService authService;
+    @Autowired
+    private UsuarioService usuarioService;
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthenticationDto authentication) {
         return ResponseEntity.ok(authService.login(authentication));
+    }
+    @PostMapping("/novoUsuario")
+    public void inserirNovoUsuario(@RequestBody UsuarioDto novoUsuario) {
+        usuarioService.InserirNovoUsuario(novoUsuario);
     }
 }

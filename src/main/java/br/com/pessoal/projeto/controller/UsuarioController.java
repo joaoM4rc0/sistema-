@@ -26,13 +26,11 @@ public class UsuarioController {
     @PostMapping
     public void AdicionarUsuario(@RequestBody UsuarioDto usuario) {
         UsuarioEntity usuarioentity = new UsuarioEntity(usuario);
-        usuarioentity.setSenha(passwordEncoder.encode(usuario.getSenha()));
         usuarioService.InserirUsuario(new UsuarioDto(usuarioentity));
     }
     @PutMapping
     public UsuarioDto AtualizarUsuario(@RequestBody UsuarioDto usuario) {
         UsuarioEntity usuarioEntity = new UsuarioEntity(usuario);
-        usuarioEntity.setSenha(passwordEncoder.encode(usuario.getSenha()));
         return usuarioService.AtualizarUsuario(new UsuarioDto(usuarioEntity));
     }
     @DeleteMapping
