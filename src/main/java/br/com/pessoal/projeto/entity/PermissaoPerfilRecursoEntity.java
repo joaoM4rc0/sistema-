@@ -13,7 +13,7 @@ import org.springframework.beans.BeanUtils;
 @Entity
 @Getter
 @Setter
-@Table(name = "JM_PERMISSAO-PERFIL-RECURSO")
+@Table(name = "JM_PERMISSAO_PERFIL_RECURSO")
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class PermissaoPerfilRecursoEntity {
