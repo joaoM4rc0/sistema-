@@ -49,6 +49,20 @@ public class UsuarioService {
         emailService.enviarEmailTexto(usuario.getEmail(), "novo usuario cadastrado", "vc está recebendo um email de cadastro, o numero para verificação é : " + verificador.getUuid());
 
     }
+    public String verificarUsuario(String uuid) {
+        UsuarioVerificadorEntity verificador = usuarioVerificadorRepository.findByUuid(UUID.fromString(uuid)).get();
+        if (usuarioVerificadorRepository == null) {
+            return "usuario nao existe";
+        }
+        if (verificador.getDataExpiracao().isBefore(Instant.now())) {
+            usuarioVerificadorRepository.deleteById(verificador.getId());
+            return "tempo de verificação expirado";
+        }
+        UsuarioEntity usuario = verificador.getUsuario();
+        usuario.setSituacao(TipoSituacaoUsu.ATIVO);
+        usuarioRepository.save(usuario);
+    return "usuario verificado";
+    }
     public UsuarioDto AtualizarUsuario(UsuarioDto usuarioDto) {
         UsuarioEntity usuario = usuarioRepository.save(new UsuarioEntity(usuarioDto));
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));

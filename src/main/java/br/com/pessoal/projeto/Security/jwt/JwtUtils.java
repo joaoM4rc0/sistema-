@@ -30,14 +30,10 @@ public class JwtUtils {
 
     public String getUserNameFromJwtToken(String token) {
         System.out.println();
-        System.out.println(token);
-        System.out.println();
         return Jwts.parser().setSigningKey(getSigninKey()).build().parseSignedClaims(token).getPayload().getSubject();
     }
     public boolean validateJwtToken(String authToken) {
         try {
-            System.out.println();
-            System.out.println(authToken);
             System.out.println();
             Jwts.parser().setSigningKey(getSigninKey()).build().parseClaimsJws(authToken);
             return true;

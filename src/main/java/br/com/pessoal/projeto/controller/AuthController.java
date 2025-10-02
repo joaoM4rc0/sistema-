@@ -28,4 +28,8 @@ public class AuthController {
     public void inserirNovoUsuario(@RequestBody UsuarioDto novoUsuario) {
         usuarioService.InserirNovoUsuario(novoUsuario);
     }
+    @GetMapping(value = "/verificarCadastro/{uuid}")
+    public String VerificarCadastro(@PathVariable("uuid") String uuid) {
+        return  usuarioService.verificarUsuario(uuid);
+    }
 }
