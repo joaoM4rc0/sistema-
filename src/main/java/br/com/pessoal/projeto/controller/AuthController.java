@@ -20,16 +20,16 @@ public class AuthController {
     private AuthService authService;
     @Autowired
     private UsuarioService usuarioService;
-    @PostMapping("/login")
+    @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody AuthenticationDto authentication) {
         return ResponseEntity.ok(authService.login(authentication));
     }
-    @PostMapping("/novoUsuario")
+    @PostMapping(value = "/novoUsuario")
     public void inserirNovoUsuario(@RequestBody UsuarioDto novoUsuario) {
         usuarioService.InserirNovoUsuario(novoUsuario);
     }
     @GetMapping(value = "/verificarCadastro/{uuid}")
     public String VerificarCadastro(@PathVariable("uuid") String uuid) {
-        return  usuarioService.verificarUsuario(uuid);
+        return usuarioService.verificarUsuario(uuid);
     }
 }

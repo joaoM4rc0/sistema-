@@ -27,10 +27,11 @@ public class AuthService {
             // busca usuario logado
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             var token = jwtUtils.GenerateTokenFromUserDetailsImpl(userDetails);
-            return new AcessDto(token);
+            AcessDto acessDto = new AcessDto(token);
+            return acessDto;
         }catch (BadCredentialsException e) {
             System.out.println(e);
+            return null;
         }
-        return new AcessDto("Acesso negado");
     }
 }

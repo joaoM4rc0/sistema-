@@ -11,17 +11,17 @@ public class UserDetailsImpl implements UserDetails {
 
     private Long id;
     private String name;
-    private String userName;
+    private String username;
     private String email;
-    private String passWord;
+    private String password;
 
     public UserDetailsImpl(Long id, String name, String username, String password, String email,
                            Collection<? extends GrantedAuthority> authorities) {
         super();
         this.id = id;
         this.name = name;
-        this.userName= username;
-        this.passWord = password;
+        this.username= username;
+        this.password = password;
         this.email = email;
         this.authorities = authorities;
     }
@@ -45,12 +45,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.passWord;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return username;
     }
 
     @Override
